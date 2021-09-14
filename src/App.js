@@ -27,7 +27,7 @@ function App() {
             addInfo(result2.data.artists[0]);
         };
         apiCall();
-    }, [search]);
+    }, [search, artist, song]);
 
     return (
         <Fragment>
