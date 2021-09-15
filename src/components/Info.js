@@ -3,7 +3,9 @@ import React from "react";
 const Info = ({ info }) => {
     if (Object.keys(info).length === 0) return null;
 
-    const { strArtistThumb, strGenre, strBiographyES } = info;
+    console.log(info);
+
+    const { strArtistThumb, strGenre, strBiographyEN } = info;
 
     return (
         <div className="card border-light">
@@ -14,7 +16,7 @@ const Info = ({ info }) => {
                 <img src={strArtistThumb} alt="artist logo" />
                 <p className="card-text">Genre: {strGenre}</p>
                 <h2 className="card-text">Bio:</h2>
-                <p className="card-text">{strBiographyES}</p>
+                <p className="card-text">{strBiographyEN}</p>
                 <p className="card-text">
                     <a
                         href={`https://${info.strFacebook}`}

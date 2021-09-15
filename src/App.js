@@ -35,10 +35,10 @@ function App() {
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-6">
-                        <Info info={info} />
+                        <Song lyrics={lyrics} />
                     </div>
                     <div className="col-md-6">
-                        <Song lyrics={lyrics} />
+                        <Info info={info} />
                     </div>
                 </div>
             </div>
