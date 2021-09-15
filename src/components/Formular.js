@@ -6,7 +6,6 @@ const Formular = ({ addSearch }) => {
         song: "",
     });
     const [error, addError] = useState(false);
-
     const { artist, song } = inputText;
 
     const handleChange = (evt) => {
@@ -23,9 +22,7 @@ const Formular = ({ addSearch }) => {
             addError(true);
             return;
         }
-
         addError(false);
-
         addSearch(inputText);
     };
 
@@ -43,7 +40,7 @@ const Formular = ({ addSearch }) => {
                         className="col card text-white bg-transparent mb-5 pt5 pb-2"
                     >
                         <fieldset>
-                            <legend className="text-center">
+                            <legend className="h1 text-center mb-5">
                                 Lyrics Search
                             </legend>
                             <div className="row">

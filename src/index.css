@@ -26,10 +26,10 @@ legend {
 legend::before {
     position: absolute;
     content: "";
-    width: calc(120%);
+    width: calc(127%);
     display: block;
     background-color: #eb6864;
-    height: 40px;
+    height: 55px;
     z-index: -1;
     left: -30px;
     right: -30px;

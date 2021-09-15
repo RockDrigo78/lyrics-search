@@ -8,6 +8,7 @@ function App() {
     const [search, addSearch] = useState({});
     const [lyrics, addLyrics] = useState("");
     const [info, addInfo] = useState({});
+    const [notFound, addNotFound] = useState(false);
 
     const { artist, song } = search;
 
@@ -18,11 +19,23 @@ function App() {
             const url = `https://api.lyrics.ovh/v1/${artist}/${song}`;
             const url2 = `https://www.theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
 
-            const [result, result2] = await Promise.all([
-                axios(url),
-                axios(url2),
-            ]);
+            let result;
+            let result2;
 
+            try {
+                result = await axios(url);
+            } catch {
+                addNotFound(true);
+                return;
+            }
+            try {
+                result2 = await axios(url2);
+            } catch {
+                addNotFound(true);
+                return;
+            }
+
+            addNotFound(false);
             addLyrics(result.data.lyrics);
             addInfo(result2.data.artists[0]);
         };
@@ -32,16 +45,20 @@ function App() {
     return (
         <Fragment>
             <Formular addSearch={addSearch} />
-            <div className="container mt-5">
-                <div className="row">
-                    <div className="col-md-6">
-                        <Song lyrics={lyrics} />
-                    </div>
-                    <div className="col-md-6">
-                        <Info info={info} />
+            {notFound ? (
+                <p className="alert alert-danger text-center p-2">Not Found</p>
+            ) : (
+                <div className="container mt-5">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Song lyrics={lyrics} />
+                        </div>
+                        <div className="col-md-6">
+                            <Info info={info} />
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </Fragment>
     );
 }
